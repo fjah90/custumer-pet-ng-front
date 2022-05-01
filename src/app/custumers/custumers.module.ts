@@ -7,6 +7,7 @@ import { ViewCustumersComponent } from './view/view.component';
 import { CreateCustumersComponent } from './create/create.component';
 import { EditCustumersComponent } from './edit/edit.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { EditCustumersComponent } from './edit/edit.component';
   ],
   imports: [
     CommonModule,
-    CustumersRoutingModule
+    CustumersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CustumersModule { }

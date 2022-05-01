@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CustumerService } from '../custumers.service';
+import { PetService } from '../pets.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.css']
 })
-export class CreateCustumersComponent implements OnInit {
+export class CreateComponent implements OnInit {
 
   form!: FormGroup;
 
@@ -18,7 +18,7 @@ export class CreateCustumersComponent implements OnInit {
   --------------------------------------------
   --------------------------------------------*/
   constructor(
-    public custumersService: CustumerService,
+    public petService: PetService,
     private router: Router
   ) { }
 
@@ -29,12 +29,8 @@ export class CreateCustumersComponent implements OnInit {
    */
   ngOnInit(): void {
     this.form = new FormGroup({
-      dni: new FormControl('', [Validators.required]),
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      note: new FormControl('', [Validators.required]),
+      title: new FormControl('', [Validators.required]),
+      body: new FormControl('', Validators.required)
     });
   }
 
@@ -54,9 +50,9 @@ export class CreateCustumersComponent implements OnInit {
    */
   submit() {
     console.log(this.form.value);
-    this.custumersService.create(this.form.value).subscribe((res: any) => {
-      console.log('Custumer created successfully!');
-      this.router.navigateByUrl('custumers/index');
+    this.petService.create(this.form.value).subscribe((res: any) => {
+      console.log('Pet created successfully!');
+      this.router.navigateByUrl('pets/index');
     })
   }
 

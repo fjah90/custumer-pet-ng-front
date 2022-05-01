@@ -1,1 +1,60 @@
-<p>edit works!</p>
+<div class="container mt-5 pt-2">
+    <h1>Update Custumer</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="dni">DNI:</label>
+            <input formControlName="dni" id="dni" type="number" class="form-control" [(ngModel)]="custumers.dni">
+            <div *ngIf="f['dni'].touched && f['dni'].invalid" class="alert alert-danger">
+                <div *ngIf="f['dni'].errors && f['dni'].errors['required']">DNI is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input formControlName="firstName" id="firstName" type="text" class="form-control" [(ngModel)]="custumers.firstName">
+            <div *ngIf="f['firstName'].touched && f['firstName'].invalid" class="alert alert-danger">
+                <div *ngIf="f['firstName'].errors && f['firstName'].errors['required']">First Name is required.</div>
+            </div>
+
+            <label for="lastName">Last Name:</label>
+            <input formControlName="lastName" id="lastName" type="text" class="form-control" [(ngModel)]="custumers.lastName">
+            <div *ngIf="f['lastName'].touched && f['lastName'].invalid" class="alert alert-danger">
+                <div *ngIf="f['lastName'].errors && f['lastName'].errors['required']">Last Name is required.</div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="phoneNumber">Phone number:</label>
+            <input formControlName="phoneNumber" id="phoneNumber" type="text" class="form-control" [(ngModel)]="custumers.phoneNumber">
+            <div *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid" class="alert alert-danger">
+                <div *ngIf="f['phoneNumber'].errors && f['phoneNumber'].errors['required']">Phone number is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input formControlName="email" id="email" type="text" class="form-control" [(ngModel)]="custumers.email">
+            <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+                <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="note">Note:</label>
+            <textarea formControlName="note" id="note" type="text" class="form-control">[(ngModel)]="custumers.note"</textarea>
+            <div *ngIf="f['note'].touched && f['note'].invalid" class="alert alert-danger">
+                <div *ngIf="f['note'].errors && f['note'].errors['required']">Note is required.</div>
+            </div>
+
+        </div>
+        <div class="form-group mt-3 ">
+            <a href="#" routerLink="/custumers/index" class="btn btn-primary position-relative float-start">Back</a>
+            <button class="btn btn-success position-relative float-end" type="submit" [disabled]="!form.valid">Update</button>
+        </div>
+
+    </form>
+</div>
