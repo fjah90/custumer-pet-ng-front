@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CustumersRoutingModule } from './custumers-routing.module';
-import { IndexComponent } from './index/index.component';
-import { ViewComponent } from './view/view.component';
-import { CreateComponent } from './create/create.component';
-import { EditComponent } from './edit/edit.component';
+import { IndexCustumersComponent } from './index/index.component';
+import { ViewCustumersComponent } from './view/view.component';
+import { CreateCustumersComponent } from './create/create.component';
+import { EditCustumersComponent } from './edit/edit.component';
 
 
 @NgModule({
   declarations: [
-    IndexComponent,
-    ViewComponent,
-    CreateComponent,
-    EditComponent
+    IndexCustumersComponent,
+    ViewCustumersComponent,
+    CreateCustumersComponent,
+    EditCustumersComponent
   ],
   imports: [
     CommonModule,
