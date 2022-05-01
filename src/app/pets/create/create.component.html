@@ -5,7 +5,7 @@
 
         <div class="form-group">
             <label for="custumerId">Customer Id:</label>
-            <input formControlName="custumerId" id="custumerId" type="number" class="form-control">
+            <input formControlName="custumerId" id="custumerId" type="text" class="form-control">
             <div *ngIf="f['custumerId'].touched && f['custumerId'].invalid" class="alert alert-danger">
                 <div *ngIf="f['custumerId'].errors && f['custumerId'].errors['required']">Customer Id is required.</div>
             </div>

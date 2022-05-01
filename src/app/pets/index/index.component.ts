@@ -35,9 +35,9 @@ export class IndexPetsComponent implements OnInit {
    *
    * @return response()
    */
-  deletePet(id: string) {
-    this.petService.delete(id).subscribe(res => {
-      this.pets = this.pets.filter(item => item.id !== id);
+  deletePet(_id: string) {
+    this.petService.delete(_id).subscribe(res => {
+      this.pets = this.pets.filter(item => item._id !== _id);
       console.log('Pet deleted successfully!');
     })
   }

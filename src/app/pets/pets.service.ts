@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -11,7 +12,7 @@ import { Pet } from './pets.interface';
 })
 export class PetService {
 
-  private apiURL = "https://jsonplaceholder.typicode.com";
+  private apiURL = environment.apiUri;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -19,7 +20,7 @@ export class PetService {
     })
   }
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private readonly httpClient: HttpClient) { }
 
   getAll(): Observable<Pet[]> {
     return this.httpClient.get<Pet[]>(this.apiURL + '/pets/')
@@ -43,7 +44,7 @@ export class PetService {
   }
 
   update(id: string, pet: Pet): Observable<Pet> {
-    return this.httpClient.put<Pet>(this.apiURL + '/pets/' + id, JSON.stringify(pet), this.httpOptions)
+    return this.httpClient.patch<Pet>(this.apiURL + '/pets/' + id, JSON.stringify(pet), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )

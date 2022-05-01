@@ -10,7 +10,7 @@ import { Pet } from '../pets.interface';
 })
 export class ViewPetsComponent implements OnInit {
 
-  id!: string;
+  _id!: string;
   pet!: Pet;
 
   /*------------------------------------------
@@ -21,7 +21,6 @@ export class ViewPetsComponent implements OnInit {
   constructor(
     public petService: PetService,
     private route: ActivatedRoute,
-    private router: Router
   ) { }
 
   /**
@@ -30,9 +29,9 @@ export class ViewPetsComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this._id = this.route.snapshot.params['_id'];
 
-    this.petService.find(this.id).subscribe((data: Pet) => {
+    this.petService.find(this._id).subscribe((data: Pet) => {
       this.pet = data;
     });
   }

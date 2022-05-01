@@ -12,7 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class EditPetsComponent implements OnInit {
 
   id!: string;
-  pets!: Pet;
+  pet!: Pet;
   form!: FormGroup;
 
   /*------------------------------------------
@@ -32,14 +32,21 @@ export class EditPetsComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['_id'];
     this.petsService.find(this.id).subscribe((data: Pet) => {
-      this.pets = data;
+      console.log(data);
+      this.pet = data;
     });
 
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      custumerId: new FormControl('', [Validators.required]),
+      chipNumber: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      birthDate: new FormControl('', [Validators.required]),
+      species: new FormControl('', [Validators.required]),
+      race: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      photoURL: new FormControl('', [Validators.required]),
     });
   }
 
