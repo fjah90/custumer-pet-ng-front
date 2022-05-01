@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { CustumersModule } from './custumers/custumers.module';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+
+import { CustumersModule } from './custumers/custumers.module';
+import { PetsModule } from './pets/pets.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     CustumersModule,
+    PetsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

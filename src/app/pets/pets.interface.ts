@@ -1,6 +1,6 @@
 export interface Pet {
     id: string;
-    customerId: string;
+    custumerId: string;
     chipNumber: string;
     name: string;
     birthDate: number;

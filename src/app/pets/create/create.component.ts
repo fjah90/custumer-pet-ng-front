@@ -6,9 +6,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  styleUrls: ['./create.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreatePetsComponent implements OnInit {
 
   form!: FormGroup;
 
@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
   --------------------------------------------
   --------------------------------------------*/
   constructor(
-    public petService: PetService,
+    public petsService: PetService,
     private router: Router
   ) { }
 
@@ -29,8 +29,14 @@ export class CreateComponent implements OnInit {
    */
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      custumerId: new FormControl('', [Validators.required]),
+      chipNumber: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      birthDate: new FormControl('', [Validators.required]),
+      species: new FormControl('', [Validators.required]),
+      race: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      photoURL: new FormControl('', [Validators.required]),
     });
   }
 
@@ -50,7 +56,7 @@ export class CreateComponent implements OnInit {
    */
   submit() {
     console.log(this.form.value);
-    this.petService.create(this.form.value).subscribe((res: any) => {
+    this.petsService.create(this.form.value).subscribe((res: any) => {
       console.log('Pet created successfully!');
       this.router.navigateByUrl('pets/index');
     })

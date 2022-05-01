@@ -1,7 +1,7 @@
 <div class="container">
-    <h1>Custumer Index</h1>
+    <h1>Custumers Index</h1>
 
-    <a href="#" routerLink="/custumers/create/" class="btn btn-success mb-3 mt-3">Create New Custumer</a>
+    <a href="#" routerLink="/custumers/create/" class="btn btn-success mt-3 mb-3">Create New Custumer</a>
 
     <table class="table table-bordered">
         <tr>
@@ -11,7 +11,7 @@
             <th>Phone Number</th>
             <th>Email</th>
             <th>Note</th>
-            <th class="w220">Action</th>
+            <th class="w220">Actions</th>
         </tr>
         <tr *ngFor="let custumer of custumers">
             <td>{{ custumer.id }}</td>

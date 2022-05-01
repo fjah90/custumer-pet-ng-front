@@ -1,1 +1,73 @@
-<p>edit works!</p>
+<div class="container mt-5 pt-2">
+    <h1>Update Pet</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="custumerId">Customer Id:</label>
+            <input formControlName="custumerId" id="custumerId" type="number" class="form-control" [(ngModel)]="pets.custumerId">
+            <div *ngIf="f['custumerId'].touched && f['custumerId'].invalid" class="alert alert-danger">
+                <div *ngIf="f['custumerId'].errors && f['custumerId'].errors['required']">Customer Id is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="chipNumber">Chip Number:</label>
+            <input formControlName="chipNumber" id="chipNumber" type="text" class="form-control" [(ngModel)]="pets.chipNumber">
+            <div *ngIf="f['chipNumber'].touched && f['chipNumber'].invalid" class="alert alert-danger">
+                <div *ngIf="f['chipNumber'].errors && f['chipNumber'].errors['required']">Chip Number is required.</div>
+            </div>
+
+            <label for="name">Pet Name:</label>
+            <input formControlName="name" id="name" type="text" class="form-control" [(ngModel)]="pets.name">
+            <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+                <div *ngIf="f['name'].errors && f['name'].errors['required']">Pet Name is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">birthDate:</label>
+            <input formControlName="birthDate" id="birthDate" type="text" class="form-control" [(ngModel)]="pets.birthDate">
+            <div *ngIf="f['birthDate'].touched && f['birthDate'].invalid" class="alert alert-danger">
+                <div *ngIf="f['birthDate'].errors && f['birthDate'].errors['required']">Birth Date is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="species">Species:</label>
+            <input formControlName="species" id="species" type="text" class="form-control" [(ngModel)]="pets.species">
+            <div *ngIf="f['species'].touched && f['species'].invalid" class="alert alert-danger">
+                <div *ngIf="f['species'].errors && f['species'].errors['required']">Species is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="race">Race:</label>
+            <input formControlName="race" id="race" type="text" class="form-control" [(ngModel)]="pets.race">
+            <div *ngIf="f['race'].touched && f['race'].invalid" class="alert alert-danger">
+                <div *ngIf="f['race'].errors && f['race'].errors['required']">Race is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="photoURL">Photo URL:</label>
+            <input formControlName="photoURL" id="photoURL" type="text" class="form-control" [(ngModel)]="pets.photoURL">
+            <div *ngIf="f['photoURL'].touched && f['photoURL'].invalid" class="alert alert-danger">
+                <div *ngIf="f['photoURL'].errors && f['photoURL'].errors['required']">Photo URL is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea formControlName="description" id="description" type="text" class="form-control">[(ngModel)]="pets.description"</textarea>
+            <div *ngIf="f['description'].touched && f['description'].invalid" class="alert alert-danger">
+                <div *ngIf="f['description'].errors && f['description'].errors['required']">Description is required.</div>
+            </div>
+        </div>
+        <div class="form-group mt-3 ">
+            <a href="#" routerLink="/pets/index" class="btn btn-primary position-relative ffloat-start">Back</a>
+            <button class="btn btn-success position-relative float-end" type="submit" [disabled]="!form.valid">Update</button>
+        </div>
+
+    </form>
+</div>
