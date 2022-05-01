@@ -16,7 +16,7 @@ export class IndexPetsComponent implements OnInit {
   Created constructor
   --------------------------------------------
   --------------------------------------------*/
-  constructor(public custumerService: PetService) { }
+  constructor(public petService: PetService) { }
 
   /**
    * Write code on Method
@@ -24,7 +24,7 @@ export class IndexPetsComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
-    this.custumerService.getAll().subscribe((data: Pet[]) => {
+    this.petService.getAll().subscribe((data: Pet[]) => {
       this.pets = data;
       console.log(this.pets);
     })
@@ -36,7 +36,7 @@ export class IndexPetsComponent implements OnInit {
    * @return response()
    */
   deletePet(id: string) {
-    this.custumerService.delete(id).subscribe(res => {
+    this.petService.delete(id).subscribe(res => {
       this.pets = this.pets.filter(item => item.id !== id);
       console.log('Pet deleted successfully!');
     })
