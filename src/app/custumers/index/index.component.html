@@ -14,16 +14,16 @@
             <th class="w220">Actions</th>
         </tr>
         <tr *ngFor="let custumer of custumers">
-            <td>{{ custumer.id }}</td>
+            <td>{{ custumer._id }}</td>
             <td>{{ custumer.dni }}</td>
             <td>{{ custumer.firstName }} {{ custumer.lastName }}</td>
             <td>{{ custumer.phoneNumber }}</td>
             <td>{{ custumer.email }}</td>
             <td>{{ custumer.note }}</td>
             <td>
-                <a href="#" [routerLink]="['/custumers/', custumer.id, 'view']" class="btn btn-info">View</a>
-                <a href="#" [routerLink]="['/custumers/', custumer.id, 'edit']" class="btn btn-primary">Edit</a>
-                <button type="button" (click)="deleteCustumer(custumer.id)" class="btn btn-danger">Delete</button>
+                <a href="#" [routerLink]="['/custumers/view/' + custumer._id, ]" class="btn btn-info">View</a>
+                <a href="#" [routerLink]="['/custumers/edit/' +  custumer._id, ]" class="btn btn-primary">Edit</a>
+                <button type="button" (click)="deleteCustumer(custumer._id)" class="btn btn-danger">Delete</button>
             </td>
         </tr>
     </table>

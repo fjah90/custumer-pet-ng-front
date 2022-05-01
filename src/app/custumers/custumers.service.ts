@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -11,7 +12,7 @@ import { Custumer } from './custumers.interface';
 })
 export class CustumerService {
 
-  private apiURL = "https://jsonplaceholder.typicode.com";
+  private apiURL = environment.apiUri;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -43,7 +44,7 @@ export class CustumerService {
   }
 
   update(id: string, custumer: Custumer): Observable<Custumer> {
-    return this.httpClient.put<Custumer>(this.apiURL + '/custumers/' + id, JSON.stringify(custumer), this.httpOptions)
+    return this.httpClient.patch<Custumer>(this.apiURL + '/custumers/' + id, JSON.stringify(custumer), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )

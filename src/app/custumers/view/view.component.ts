@@ -30,7 +30,7 @@ export class ViewCustumersComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['_id'];
 
     this.custumerService.find(this.id).subscribe((data: Custumer) => {
       this.custumer = data;

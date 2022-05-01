@@ -1,5 +1,5 @@
 export interface Custumer {
-    id: string;
+    _id: string;
     dni: number,
     firstName: string,
     lastName: string,

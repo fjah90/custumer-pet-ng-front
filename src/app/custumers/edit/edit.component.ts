@@ -32,14 +32,18 @@ export class EditCustumersComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['_id'];
     this.custumersService.find(this.id).subscribe((data: Custumer) => {
       this.custumers = data;
     });
 
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      dni: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      note: new FormControl('', [Validators.required]),
     });
   }
 

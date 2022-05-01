@@ -37,7 +37,7 @@ export class IndexCustumersComponent implements OnInit {
    */
   deleteCustumer(id: string) {
     this.custumerService.delete(id).subscribe(res => {
-      this.custumers = this.custumers.filter(item => item.id !== id);
+      this.custumers = this.custumers.filter(item => item._id !== id);
       console.log('Custumer deleted successfully!');
     })
   }
