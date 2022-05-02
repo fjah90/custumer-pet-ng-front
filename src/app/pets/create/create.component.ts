@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from '../pets.service';
+import { CustumerService } from '../../custumers/custumers.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Custumer } from 'src/app/custumers/custumers.interface';
 
 @Component({
   selector: 'app-create',
@@ -11,6 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CreatePetsComponent implements OnInit {
 
   form!: FormGroup;
+  custumerList: Custumer[] = [];
 
   /*------------------------------------------
   --------------------------------------------
@@ -19,6 +22,7 @@ export class CreatePetsComponent implements OnInit {
   --------------------------------------------*/
   constructor(
     public petsService: PetService,
+    public custumersService: CustumerService,
     private router: Router
   ) { }
 
@@ -38,6 +42,10 @@ export class CreatePetsComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       photoURL: new FormControl('', [Validators.required]),
     });
+    this.custumersService.getAll().subscribe((data: Custumer[]) => {
+      this.custumerList = data;
+      console.log(this.custumerList);
+    })
   }
 
   /**
@@ -47,6 +55,15 @@ export class CreatePetsComponent implements OnInit {
    */
   get f() {
     return this.form.controls;
+  }
+
+  /**
+   * Write code on Method
+   *
+   * @return response()
+   */
+  changeCustumer(e:any) {
+    console.log(e.target.value);
   }
 
   /**

@@ -12,6 +12,18 @@
         </div>
 
         <div class="form-group">
+            <label for="custumer">Custumer:</label>
+            <select formControlName="custumer" class="form-control" (change)="changeCustumer($event)">
+                <option disabled>Select custumer</option>
+                <option>Choose custumer</option>
+                <option *ngFor="let custumer of custumerList">{{custumerList}}</option>
+            </select>
+            <!-- <div *ngIf="f.custumer.touched && f.custumer.invalid" class="alert alert-danger">
+                <div *ngIf="f.custumer.errors.required">Name is required.</div>
+            </div> -->
+        </div>
+
+        <div class="form-group">
             <label for="chipNumber">Chip Number:</label>
             <input formControlName="chipNumber" id="chipNumber" type="text" class="form-control">
             <div *ngIf="f['chipNumber'].touched && f['chipNumber'].invalid" class="alert alert-danger">
