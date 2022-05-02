@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PetService } from '../pets.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pet } from '../pets.interface';
+import { CustumerService } from '../../custumers/custumers.service';
+import { Custumer } from '../../custumers/custumers.interface';
 
 @Component({
   selector: 'app-view',
@@ -20,6 +22,7 @@ export class ViewPetsComponent implements OnInit {
   --------------------------------------------*/
   constructor(
     public petService: PetService,
+    public custumerService: CustumerService,
     private route: ActivatedRoute,
   ) { }
 
