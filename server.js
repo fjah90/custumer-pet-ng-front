@@ -11,6 +11,6 @@ function requireHTTPS(req, res, next) {
     next();
 }
 app.use(requireHTTPS);
-app.use(express.static('./dist/custumer-pet-ng/'));
+app.use(express.static('./dist/custumer-pet-ng-front/'));
 
 app.listen(process.env.PORT || 8080);
