@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from '../pets.service';
 import { Pet } from '../pets.interface';
+import { CustumerService } from '../../custumers/custumers.service';
+import { Custumer } from '../../custumers/custumers.interface';
 
 @Component({
   selector: 'app-index',
@@ -16,7 +18,10 @@ export class IndexPetsComponent implements OnInit {
   Created constructor
   --------------------------------------------
   --------------------------------------------*/
-  constructor(public petService: PetService) { }
+  constructor(
+    public petService: PetService,
+    public custumerService: CustumerService,
+  ) { }
 
   /**
    * Write code on Method

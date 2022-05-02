@@ -3,6 +3,8 @@ import { PetService } from '../pets.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pet } from '../pets.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CustumerService } from '../../custumers/custumers.service';
+import { Custumer } from '../../custumers/custumers.interface';
 
 @Component({
   selector: 'app-edit',
@@ -14,6 +16,8 @@ export class EditPetsComponent implements OnInit {
   id!: string;
   pet!: Pet;
   form!: FormGroup;
+  custumerList!: Custumer[];
+  selectedValue!: string;
 
   /*------------------------------------------
   --------------------------------------------
@@ -23,6 +27,7 @@ export class EditPetsComponent implements OnInit {
   constructor(
     public petsService: PetService,
     private route: ActivatedRoute,
+    public custumerService: CustumerService,
     private router: Router
   ) { }
 
@@ -37,7 +42,6 @@ export class EditPetsComponent implements OnInit {
       console.log(data);
       this.pet = data;
     });
-
     this.form = new FormGroup({
       custumerId: new FormControl('', [Validators.required]),
       chipNumber: new FormControl('', [Validators.required]),
@@ -48,6 +52,13 @@ export class EditPetsComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       photoURL: new FormControl('', [Validators.required]),
     });
+    this.custumerService.getAll().subscribe((data: Custumer[]) => {
+      this.custumerList = data;
+    })
+    this.custumerService.find(this.pet.custumerId).subscribe((data: Custumer) => {
+      this.selectedValue = data._id;
+      console.log(this.selectedValue)
+    })
   }
 
   /**
@@ -57,6 +68,15 @@ export class EditPetsComponent implements OnInit {
    */
   get f() {
     return this.form.controls;
+  }
+  /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+  onCustumerChanged(value: any) {
+    console.log('onCustumerChanged')
+    console.log(value)
   }
 
   /**
