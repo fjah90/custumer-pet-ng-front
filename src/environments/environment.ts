@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiUri: 'http://localhost:3001/api'
-  apiUri: 'https://custumer-pet-nestjs-api.herokuapp.com/api'
+  apiUri: 'http://localhost:3001/api'
 };
 
 /*
