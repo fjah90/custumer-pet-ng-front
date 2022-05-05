@@ -42,7 +42,7 @@
                         <th>Photo</th>
                         <th class="w220">Action</th>
                     </tr>
-                    <div *ngIf="test">
+                    <ng-container *ngIf="!test">
                         <tr *ngFor="let pet of pets">
                             <td>{{ pet.chipNumber }}</td>
                             <td>{{ pet.name }}</td>
@@ -61,9 +61,9 @@
                                 <button type="button" (click)="deletePet(pet._id)" class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
-                    </div>
+                    </ng-container>
                 </table>
-                <div *ngIf="!test">
+                <div *ngIf="test">
                     <p>No have any pet.</p>
                     <p>You wanna register one?.</p>
                     <a href="#" routerLink="/pets/create/" class="btn btn-success mt-3 mb-3">Create New Pet</a>
