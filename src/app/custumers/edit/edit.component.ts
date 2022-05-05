@@ -14,10 +14,16 @@ export class EditCustumersComponent implements OnInit {
   id!: string;
   custumers!: Custumer;
   form!: FormGroup;
+  dni!: number;
+  firstName!: string;
+  lastName!: string;
+  email!: string;
+  note!: string;
+
 
   /*------------------------------------------
   --------------------------------------------
-  Created constructor
+  Constructor
   --------------------------------------------
   --------------------------------------------*/
   constructor(
@@ -32,9 +38,20 @@ export class EditCustumersComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
+    this.custumers = {} as Custumer;
     this.id = this.route.snapshot.params['_id'];
     this.custumersService.find(this.id).subscribe((data: Custumer) => {
       this.custumers = data;
+
+      let setDefaults = {
+        dni: this.custumers.dni,
+        firstName: this.custumers.firstName,
+        lastName: this.custumers.lastName,
+        phoneNumber: this.custumers.phoneNumber,
+        email: this.custumers.email,
+        note: this.custumers.note,
+      };
+      this.form.setValue(setDefaults);
     });
 
     this.form = new FormGroup({
@@ -42,9 +59,10 @@ export class EditCustumersComponent implements OnInit {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
       note: new FormControl('', [Validators.required]),
     });
+
   }
 
   /**
