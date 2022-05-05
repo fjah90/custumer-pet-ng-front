@@ -7,6 +7,10 @@ import { catchError } from 'rxjs/operators';
 
 import { Custumer } from './custumers.interface';
 
+import { PetService } from '../pets/pets.service';
+import { Pet } from '../pets/pets.interface';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +24,10 @@ export class CustumerService {
     })
   }
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    public petService: PetService,
+    ) { }
 
   getAll(): Observable<Custumer[]> {
     return this.httpClient.get<Custumer[]>(this.apiURL + '/custumers/')
@@ -29,15 +36,25 @@ export class CustumerService {
       )
   }
 
-  create(custumer: Custumer): Observable<Custumer> {
-    return this.httpClient.post<Custumer>(this.apiURL + '/custumers/', JSON.stringify(custumer), this.httpOptions)
+  getAllPets(custumerId: string): Observable<Pet[]> {
+    console.log(custumerId);
+    let res = this.httpClient.get<Pet[]>(this.apiURL + '/pets/custumer/' + custumerId, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+      console.log(res)
+      return res;
+  }
+
+  find(id: string): Observable<Custumer> {
+    return this.httpClient.get<Custumer>(this.apiURL + '/custumers/' + id)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
-  find(id: string): Observable<Custumer> {
-    return this.httpClient.get<Custumer>(this.apiURL + '/custumers/' + id)
+  create(custumer: Custumer): Observable<Custumer> {
+    return this.httpClient.post<Custumer>(this.apiURL + '/custumers/', JSON.stringify(custumer), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )

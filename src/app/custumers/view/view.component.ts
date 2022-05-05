@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CustumerService } from '../custumers.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustumerService } from '../custumers.service';
 import { Custumer } from '../custumers.interface';
+import { PetService } from '../../pets/pets.service';
+import { Pet } from '../../pets/pets.interface';
 
 @Component({
   selector: 'app-view',
@@ -12,6 +14,8 @@ export class ViewCustumersComponent implements OnInit {
 
   id!: string;
   custumer!: Custumer;
+  pets!: Pet[];
+  test!: boolean;
 
   /*------------------------------------------
   --------------------------------------------
@@ -19,9 +23,9 @@ export class ViewCustumersComponent implements OnInit {
   --------------------------------------------
   --------------------------------------------*/
   constructor(
+    public petService: PetService,
     public custumerService: CustumerService,
     private route: ActivatedRoute,
-    private router: Router
   ) { }
 
   /**
@@ -34,7 +38,31 @@ export class ViewCustumersComponent implements OnInit {
 
     this.custumerService.find(this.id).subscribe((data: Custumer) => {
       this.custumer = data;
+      console.log(this.custumer)
+    });
+
+    this.custumerService.getAllPets(this.id).subscribe((data: Pet[]) => {
+      this.pets = data;
+      this.test = (this.pets && (Object.keys(this.pets).length === 0));
     });
   }
-
+  /**
+    * Write code on Method
+    *
+    * @return response()
+    */
+  isEmptyObject(obj: Pet[]) {
+    return (obj && (Object.keys(obj).length === 0));
+  }
+  /**
+    * Write code on Method
+    *
+    * @return response()
+    */
+  deletePet(_id: string) {
+    this.petService.delete(_id).subscribe(res => {
+      this.pets = this.pets.filter(item => item._id !== _id);
+      console.log('Pet deleted successfully!');
+    })
+  }
 }

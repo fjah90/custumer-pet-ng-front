@@ -14,12 +14,6 @@ export class EditCustumersComponent implements OnInit {
   id!: string;
   custumers!: Custumer;
   form!: FormGroup;
-  dni!: number;
-  firstName!: string;
-  lastName!: string;
-  email!: string;
-  note!: string;
-
 
   /*------------------------------------------
   --------------------------------------------
@@ -40,19 +34,6 @@ export class EditCustumersComponent implements OnInit {
   ngOnInit(): void {
     this.custumers = {} as Custumer;
     this.id = this.route.snapshot.params['_id'];
-    this.custumersService.find(this.id).subscribe((data: Custumer) => {
-      this.custumers = data;
-
-      let setDefaults = {
-        dni: this.custumers.dni,
-        firstName: this.custumers.firstName,
-        lastName: this.custumers.lastName,
-        phoneNumber: this.custumers.phoneNumber,
-        email: this.custumers.email,
-        note: this.custumers.note,
-      };
-      this.form.setValue(setDefaults);
-    });
 
     this.form = new FormGroup({
       dni: new FormControl('', [Validators.required]),
@@ -63,6 +44,30 @@ export class EditCustumersComponent implements OnInit {
       note: new FormControl('', [Validators.required]),
     });
 
+    this.custumersService.find(this.id).subscribe((data: Custumer): void => {
+      this.custumers = data;
+      this.updateForm();
+    });
+
+
+
+  }
+  /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+  updateForm() {
+    setTimeout(() => {
+      this.form.setValue({
+        dni: this.custumers.dni,
+        firstName: this.custumers.firstName,
+        lastName: this.custumers.lastName,
+        phoneNumber: this.custumers.phoneNumber,
+        email: this.custumers.email,
+        note: this.custumers.note
+      });
+    });
   }
 
   /**
