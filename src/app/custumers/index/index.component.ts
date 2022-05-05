@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustumerService } from '../custumers.service';
 import { Custumer } from '../custumers.interface';
+import { NotificationService } from '../../common/notification.service';
 
 @Component({
   selector: 'app-index',
@@ -10,13 +11,17 @@ import { Custumer } from '../custumers.interface';
 export class IndexCustumersComponent implements OnInit {
 
   custumers: Custumer[] = [];
+  validation: boolean = false;
 
   /*------------------------------------------
   --------------------------------------------
   Created constructor
   --------------------------------------------
   --------------------------------------------*/
-  constructor(public custumerService: CustumerService) { }
+  constructor(
+    public custumerService: CustumerService,
+    private notifyService: NotificationService
+  ) { }
 
   /**
    * Write code on Method
@@ -35,11 +40,20 @@ export class IndexCustumersComponent implements OnInit {
    *
    * @return response()
    */
-  deleteCustumer(id: string) {
-    this.custumerService.delete(id).subscribe(res => {
-      this.custumers = this.custumers.filter(item => item._id !== id);
-      console.log('Custumer deleted successfully!');
-    })
+  async deleteCustumer(id: string) {
+    console.log(id);
+    this.custumerService.getAllPets(id).subscribe(response => {
+      console.log(response);
+      if (response.length === 0) {
+          this.custumerService.delete(id).subscribe(res => {
+            this.custumers = this.custumers.filter(item => item._id !== id,);
+            console.log(this.custumers);
+            console.log('Custumer deleted successfully!');
+          })
+        } else {
+          this.notifyService.showError("Something is wrong can't delete this custumer", "Oops something happened")
+        }
+    });
   }
 
 }

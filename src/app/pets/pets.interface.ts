@@ -3,7 +3,11 @@ export interface Pet {
     custumerId: string;
     chipNumber: string;
     name: string;
-    birthDate: number;
+    birthDate: {
+        year: number,
+        month: number,
+        day: number
+    };
     species: string;
     race: string;
     description: string;

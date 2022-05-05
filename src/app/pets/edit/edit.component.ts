@@ -5,6 +5,7 @@ import { Pet } from '../pets.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustumerService } from '../../custumers/custumers.service';
 import { Custumer } from '../../custumers/custumers.interface';
+import { NgbCalendar, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
@@ -18,6 +19,7 @@ export class EditPetsComponent implements OnInit {
   form!: FormGroup;
   custumerList!: Custumer[];
   selectedValue!: string;
+  model!: NgbDateStruct;
 
   /*------------------------------------------
   --------------------------------------------
@@ -28,6 +30,7 @@ export class EditPetsComponent implements OnInit {
     public petsService: PetService,
     private route: ActivatedRoute,
     public custumerService: CustumerService,
+    private calendar: NgbCalendar,
     private router: Router
   ) { }
 
@@ -37,10 +40,24 @@ export class EditPetsComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
+    this.calendar.getToday();
     this.id = this.route.snapshot.params['_id'];
     this.petsService.find(this.id).subscribe((data: Pet) => {
       console.log(data);
       this.pet = data;
+  
+      let setDefaults = {
+        custumerId:  this.pet.custumerId,
+        chipNumber: this.pet.chipNumber,
+        name: this.pet.name,
+        // TODO: fix set value birthDate
+        birthDate: this.pet.birthDate.year + "/" + this.pet.birthDate.month + "/" + this.pet.birthDate.day,
+        species: this.pet.species,
+        race: this.pet.race,
+        description: this.pet.description,
+        photoURL: this.pet.photoURL,
+      };
+      this.form.setValue(setDefaults);
     });
     this.form = new FormGroup({
       custumerId: new FormControl('', [Validators.required]),
@@ -50,7 +67,7 @@ export class EditPetsComponent implements OnInit {
       species: new FormControl('', [Validators.required]),
       race: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      photoURL: new FormControl('', [Validators.required]),
+      photoURL: new FormControl('', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
     });
     this.custumerService.getAll().subscribe((data: Custumer[]) => {
       this.custumerList = data;

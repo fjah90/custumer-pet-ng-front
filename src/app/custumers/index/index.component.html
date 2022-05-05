@@ -3,28 +3,31 @@
 
     <a href="#" routerLink="/custumers/create/" class="btn btn-success mt-3 mb-3">Create New Custumer</a>
 
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <th>DNI</th>
-            <th>Full Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Note</th>
-            <th class="w220">Actions</th>
-        </tr>
-        <tr *ngFor="let custumer of custumers">
-            <td>{{ custumer._id }}</td>
-            <td>{{ custumer.dni }}</td>
-            <td>{{ custumer.firstName }} {{ custumer.lastName }}</td>
-            <td>{{ custumer.phoneNumber }}</td>
-            <td>{{ custumer.email }}</td>
-            <td>{{ custumer.note }}</td>
-            <td>
-                <a href="#" [routerLink]="['/custumers/view/' + custumer._id, ]" class="btn btn-info">View</a>
-                <a href="#" [routerLink]="['/custumers/edit/' +  custumer._id, ]" class="btn btn-primary">Edit</a>
-                <button type="button" (click)="deleteCustumer(custumer._id)" class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-    </table>
+    <div class="row row-cols-auto">
+    
+        <table class="col-12 table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>Full Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Note</th>
+                <th class="w220">Actions</th>
+            </tr>
+            <tr *ngFor="let custumer of custumers">
+                <td>{{ custumer._id }}</td>
+                <td>{{ custumer.dni }}</td>
+                <td>{{ custumer.firstName }} {{ custumer.lastName }}</td>
+                <td>{{ custumer.phoneNumber }}</td>
+                <td>{{ custumer.email }}</td>
+                <td>{{ custumer.note }}</td>
+                <td>
+                    <a href="#" [routerLink]="['/custumers/view/' + custumer._id, ]" class="btn btn-info">View</a>
+                    <a href="#" [routerLink]="['/custumers/edit/' +  custumer._id, ]" class="btn btn-primary">Edit</a>
+                    <button type="button" (click)="deleteCustumer(custumer._id)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

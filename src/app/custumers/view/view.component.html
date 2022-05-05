@@ -1,36 +1,73 @@
 <div class="container">
-    <h1>View Custumer</h1>
+    <h1>View Custumer ID: {{id}}</h1>
 
     <a href="#" routerLink="/custumers/index" class="btn btn-primary">Back</a>
+    <div class="row row-cols-auto mt-3">
+        <div class="col-4">
 
-    <div>
-        <strong>ID:</strong>
-        <p>{{ custumer._id }}</p>
+            <div>
+                <strong>DNI:</strong>
+                <p>{{ custumer.dni }}</p>
+            </div>
+            <div>
+                <strong>Full Name:</strong>
+                <p>{{ custumer.firstName }} {{ custumer.lastName }}</p>
+            </div>
+
+            <div>
+                <strong>Phone Number:</strong>
+                <p>{{ custumer.phoneNumber }}</p>
+            </div>
+
+            <div>
+                <strong>email:</strong>
+                <p>{{ custumer.email }}</p>
+            </div>
+
+            <div>
+                <strong>Note:</strong>
+                <p>{{ custumer.note }}</p>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="row row-cols-auto">
+
+                <table class="col-12 table table-bordered">
+                    <tr>
+                        <th>Chip Number</th>
+                        <th>Name</th>
+                        <th>Birth Date</th>
+                        <th>Species & Race</th>
+                        <th>Description</th>
+                        <th>Photo</th>
+                        <th class="w220">Action</th>
+                    </tr>
+                    <ng-container *ngIf="!test">
+                        <tr *ngFor="let pet of pets">
+                            <td>{{ pet.chipNumber }}</td>
+                            <td>{{ pet.name }}</td>
+                            <td>{{ pet.birthDate.year }}-{{ pet.birthDate.month }}-{{ pet.birthDate.day }}</td>
+                            <td>{{ pet.species }} / {{ pet.race }}</td>
+                            <td>{{ pet.description }}</td>
+                            <td>
+                                <picture>
+                                    <source srcset="{{ pet.photoURL }}" type="image/svg+xml">
+                                    <img src="{{ pet.photoURL }}" class="img-fluid img-thumbnail" alt="{{ pet.name }}">
+                                </picture>
+                            </td>
+                            <td>
+                                <a [routerLink]="['/pets/view/' + pet._id]" class="btn btn-info">View</a>
+                                <a [routerLink]="['/pets/edit/' + pet._id]" class="btn btn-primary">Edit</a>
+                                <button type="button" (click)="deletePet(pet._id)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </table>
+                <div *ngIf="test">
+                    <p>No have any pet.</p>
+                    <p>You wanna register one?.</p>
+                    <a href="#" routerLink="/pets/create/" class="btn btn-success mt-3 mb-3">Create New Pet</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <strong>DNI:</strong>
-        <p>{{ custumer.dni }}</p>
-    </div>
-
-    <div>
-        <strong>Full name:</strong>
-        <p>{{ custumer.firstName }} {{ custumer.lastName }}</p>
-    </div>
-
-    <div>
-        <strong>Phone number:</strong>
-        <p>{{ custumer.phoneNumber }}</p>
-    </div>
-
-    <div>
-        <strong>Email:</strong>
-        <p>{{ custumer.email }}</p>
-    </div>
-
-    <div>
-        <strong>Note:</strong>
-        <p>{{ custumer.note }}</p>
-    </div>
-
-</div>

@@ -6,9 +6,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
+//my modules
 import { CustumersModule } from './custumers/custumers.module';
 import { PetsModule } from './pets/pets.module';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +20,8 @@ import { PetsModule } from './pets/pets.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     CustumersModule,
     PetsModule,
