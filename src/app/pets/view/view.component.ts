@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PetService } from '../pets.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pet } from '../pets.interface';
-import { CustumerService } from '../../custumers/custumers.service';
-import { Custumer } from '../../custumers/custumers.interface';
 
 @Component({
   selector: 'app-view',
@@ -12,7 +10,7 @@ import { Custumer } from '../../custumers/custumers.interface';
 })
 export class ViewPetsComponent implements OnInit {
 
-  _id!: string;
+  id!: string;
   pet!: Pet;
 
   /*------------------------------------------
@@ -22,7 +20,6 @@ export class ViewPetsComponent implements OnInit {
   --------------------------------------------*/
   constructor(
     public petService: PetService,
-    public custumerService: CustumerService,
     private route: ActivatedRoute,
   ) { }
 
@@ -32,9 +29,10 @@ export class ViewPetsComponent implements OnInit {
    * @return response()
    */
   ngOnInit(): void {
-    this._id = this.route.snapshot.params['_id'];
+    this.id = this.route.snapshot.params['_id'];
 
-    this.petService.find(this._id).subscribe((data: Pet) => {
+    this.petService.find(this.id).subscribe((data: Pet) => {
+      console.log(data)
       this.pet = data;
     });
   }

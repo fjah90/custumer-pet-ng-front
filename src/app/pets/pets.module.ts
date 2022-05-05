@@ -8,6 +8,7 @@ import { CreatePetsComponent } from './create/create.component';
 import { EditPetsComponent } from './edit/edit.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EditPetsComponent
   ],
   imports: [
+    NgbModule,
     CommonModule,
     PetsRoutingModule,
     FormsModule,

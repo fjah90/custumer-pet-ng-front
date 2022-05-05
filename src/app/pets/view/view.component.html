@@ -1,12 +1,7 @@
 <div class="container">
-    <h1>View Pet</h1>
+    <h1>View Pet {{ id }}</h1>
 
     <a href="#" routerLink="/pets/index" class="btn btn-primary">Back</a>
-
-    <div>
-        <strong>ID:</strong>
-        <p>{{ pet._id }}</p>
-    </div>
 
     <div>
         <strong>custumerId:</strong>
@@ -25,7 +20,7 @@
 
     <div>
         <strong>birthDate:</strong>
-        <p>{{ pet.birthDate }}</p>
+        <p>{{ pet.birthDate.year }}-{{ pet.birthDate.month }}-{{ pet.birthDate.day }}</p>
     </div>
 
     <div>

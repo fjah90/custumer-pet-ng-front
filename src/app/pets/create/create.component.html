@@ -1,78 +1,84 @@
 <div class="container">
     <h1>Create New Pet</h1>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
-
-       
-        <div class="form-group">
-            <label for="custumerId">Custumer:</label>
-            <select formControlName="custumerId" id="custumerId" class="form-control">
-                <option disabled>Select custumer</option>
-                <option>Choose custumer</option>
-                <option *ngFor="let custumer of custumerList let counter=index" value="{{custumerList[counter]._id}}">{{custumerList[counter].firstName}} {{custumerList[counter].lastName}}</option>
-            </select>
-            <div *ngIf="f['custumerId'].touched && f['custumerId'].invalid" class="alert alert-danger">
-                <div *ngIf="f['custumerId'].errors && f['custumerId'].errors['required']">Customer Id is required.</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="chipNumber">Chip Number:</label>
-            <input formControlName="chipNumber" id="chipNumber" type="text" class="form-control">
-            <div *ngIf="f['chipNumber'].touched && f['chipNumber'].invalid" class="alert alert-danger">
-                <div *ngIf="f['chipNumber'].errors && f['chipNumber'].errors['required']">Chip Number is required.</div>
+    <form class="row row-cols-auto" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="custumerId">Custumer:</label>
+                <select formControlName="custumerId" id="custumerId" class="form-control">
+                    <option disabled>Select custumer</option>
+                    <option *ngFor="let custumer of custumerList let counter=index" value="{{custumerList[counter]._id}}">{{custumerList[counter].firstName}} {{custumerList[counter].lastName}}</option>
+                </select>
+                <div *ngIf="f['custumerId'].touched && f['custumerId'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['custumerId'].errors && f['custumerId'].errors['required']">Customer Id is required.</div>
+                </div>
             </div>
 
-            <label for="name">Pet Name:</label>
-            <input formControlName="name" id="name" type="text" class="form-control">
-            <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
-                <div *ngIf="f['name'].errors && f['name'].errors['required']">Pet Name is required.</div>
+            <div class="form-group">
+                <label for="chipNumber">Chip Number:</label>
+                <input formControlName="chipNumber" id="chipNumber" type="text" class="form-control">
+                <div *ngIf="f['chipNumber'].touched && f['chipNumber'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['chipNumber'].errors && f['chipNumber'].errors['required']">Chip Number is required.</div>
+                </div>
+
+                <label for="name">Pet Name:</label>
+                <input formControlName="name" id="name" type="text" class="form-control">
+                <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['name'].errors && f['name'].errors['required']">Pet Name is required.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="birthDate">Birth Date:</label>
+                <div class="input-group">
+                    <input formControlName="birthDate" id="birthDate" type="text" class="form-control" [(ngModel)]="model" ngbDatepicker #birthDate="ngbDatepicker">
+                    <button class="btn btn-outline-secondary calendar" (click)="birthDate.toggle()" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                        </svg>
+                    </button>
+                </div>
+                <div *ngIf="f['birthDate'].touched && f['birthDate'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['birthDate'].errors && f['birthDate'].errors['required']">Birth Date is required.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="species">Species:</label>
+                <input formControlName="species" id="species" type="text" class="form-control">
+                <div *ngIf="f['species'].touched && f['species'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['species'].errors && f['species'].errors['required']">Species is required.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="race">Race:</label>
+                <input formControlName="race" id="race" type="text" class="form-control">
+                <div *ngIf="f['race'].touched && f['race'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['race'].errors && f['race'].errors['required']">Race is required.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="photoURL">Photo URL:</label>
+                <input formControlName="photoURL" id="photoURL" type="text" class="form-control">
+                <div *ngIf="f['photoURL'].touched && f['photoURL'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['photoURL'].errors && f['photoURL'].errors['required']">Photo URL is required.</div>
+                    <div *ngIf="f['photoURL'].errors && f['photoURL'].errors['pattern']">Please provide valid url</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea formControlName="description" id="description" type="text" class="form-control"></textarea>
+                <div *ngIf="f['description'].touched && f['description'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['description'].errors && f['description'].errors['required']">Description is required.</div>
+                </div>
+            </div>
+            <div class="form-group mt-3 ">
+                <a href="#" routerLink="/pets/index" class="btn btn-primary position-relative ffloat-start">Back</a>
+                <button class="btn btn-success position-relative float-end" type="submit" [disabled]="!form.valid">Submit</button>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="birthDate">birthDate:</label>
-            <input formControlName="birthDate" id="birthDate" type="text" class="form-control">
-            <div *ngIf="f['birthDate'].touched && f['birthDate'].invalid" class="alert alert-danger">
-                <div *ngIf="f['birthDate'].errors && f['birthDate'].errors['required']">Birth Date is required.</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="species">Species:</label>
-            <input formControlName="species" id="species" type="text" class="form-control">
-            <div *ngIf="f['species'].touched && f['species'].invalid" class="alert alert-danger">
-                <div *ngIf="f['species'].errors && f['species'].errors['required']">Species is required.</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="race">Race:</label>
-            <input formControlName="race" id="race" type="text" class="form-control">
-            <div *ngIf="f['race'].touched && f['race'].invalid" class="alert alert-danger">
-                <div *ngIf="f['race'].errors && f['race'].errors['required']">Race is required.</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="photoURL">Photo URL:</label>
-            <input formControlName="photoURL" id="photoURL" type="text" class="form-control">
-            <div *ngIf="f['photoURL'].touched && f['photoURL'].invalid" class="alert alert-danger">
-                <div *ngIf="f['photoURL'].errors && f['photoURL'].errors['required']">Photo URL is required.</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea formControlName="description" id="description" type="text" class="form-control"></textarea>
-            <div *ngIf="f['description'].touched && f['description'].invalid" class="alert alert-danger">
-                <div *ngIf="f['description'].errors && f['description'].errors['required']">Description is required.</div>
-            </div>
-        </div>
-        <div class="form-group mt-3 ">
-            <a href="#" routerLink="/pets/index" class="btn btn-primary position-relative ffloat-start">Back</a>
-            <button class="btn btn-success position-relative float-end" type="submit" [disabled]="!form.valid">Submit</button>
-        </div>
-
     </form>
 </div>
